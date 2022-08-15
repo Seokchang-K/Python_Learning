@@ -2,6 +2,7 @@ w, h, b = map(int, input().split())
 
 a = (((w*h*b)/8)/1024)/1024
 a = round(a,2)
+
 print('%0.2f MB'%a)
 
 # 일반적인 1024 * 768 사이즈(해상도)의 각점에 대해
