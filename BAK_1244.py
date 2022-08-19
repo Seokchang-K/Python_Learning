@@ -5,6 +5,7 @@
 # 남학생은 1로, 여학생은 2로 표시하고, 학생이 받은 수는 스위치 개수 이하인 양의 정수이다. 
 # 학생의 성별과 받은 수 사이에 빈칸이 하나씩 있다.
 
+# switch 를 키고 끄는 것을 수행해주는 함수를 지정해 준다.
 def trun(num):
     if switch[num] == 0:
         switch[num] = 1
@@ -12,32 +13,64 @@ def trun(num):
         switch[num] = 0
     return
 
+# 스위치의 길이를 받아온다.
 switch_n = int(input())
 
-switch = [9] + list(map(int, input().split()))
+# 스위치를 받아온다.
+# 스위치의 위치는 1번부터 시작하는 것으로 되어 있기에
+# 0번 자리에 9가 들어있는 리스트 [9]에 입력되는 스위치 상태를 받아온다.
+switch = [9] +  list(map(int, input().split()))
 
+# 학생의 수를 받아온다.
 student_n = int(input())
 
 for _ in range(student_n):
+    # 학생의 성별과 학생이 받은 스위치 번호를 받아온다.
     sex, num = map(int,input().split())
 
+    # 학생이 남학생일 경우의 처리
     if sex == 1:
         for i in range(num, switch_n+1, num):
+            # 남학생의 경우 입력된 수의 배수인 스위치들을 키거나 끈다.
+            # 학생이 받아온 숫자에서 시작
+            # 학생이 받아온 숫자의 간격으로 i를 증가시킨다.
+            # ex) 3이 입력되면 3간격 3, 6, 9 이렇게 증가한다.
+            # range(시작, 끝, 간격(시작 + 간격 숫자))
             trun(i)
-    
+
+    # 남학생이 아닌경우! - 즉, 여학생의 경우
     else:
+        # 맨처음 할일은 
+        # 여학생이 받아 온 숫자의 위치의 스위치를 키거나 끈다.
         trun(num)
         for j in range(switch_n//2):
+            # 양쪽으로 움직이며 확인 하는 것이 아닌
+            # 한쪽만을 확인하며 반대쪽도 같이 바꾸기에 2로 나누어 준다.
+            
             if num + j > switch_n or num + j < 1 : break
+            # 만약 여학생이 받아온 수 + j 번째가 전체 길이보다 길어지거나
+            # 1보다 짧아 진다면 멈춘다.
             
             if switch[num + j] == switch[num - j]:
+            # 만약 받아온 수 + - j 번째가 서로 같다면
+            # 각 위치의 스위치를 키거나 끈다.
                 trun(num + j)
                 trun(num - j)
            
             else:
+            # 만약 여학생이 받아온 수 양쪽이 서로 같지 않다면
+            # 멈춘다.
                 break
 
 for i in range(1, switch_n+1):
+    # 우리는 맨처음 switch를 만들떄 0번자리에 아무수나 넣어주어
+    # 수위치 번호가 1번부터 시작하게 해줬다.
+    # 그렇기에 1번부터 시작해 print 해준다.
+
     print(switch[i], end=' ')
+    # i 번째의 스위치 상태를 출력하는데, 끝은 공백으로 해주어 한줄로 출력한다.
+
     if i%20 == 0 :
+        # 문제에서 스위치는 한줄에 20개까지 출력한다 하였기에
+        # 20 개의 스위치가 출력되었다면 다음줄에 출력한다.
         print()
