@@ -20,6 +20,9 @@ n, m = map(int, input().split())
 
 n_hear = {input(): 1 for _ in range(n)}
 # -> 시간초가 발생하지 않음.
+# why? list 로 했을때 보다 dic로 했을 경우가 시간 복잡도가 더 낮기 때문이다.
+# 리스트의 경우엔 인덱스를 지정해주는 연산이 추가되기에 시간복잡도가 늘어나고
+# 딕셔너리의 경우엔 키값이 정해져 있기에 리스트에 비해 상대적으로 시간복잡도가 적어지게 된다.
 
 # 보도 못한 사람
 n_see_hear = []
@@ -27,7 +30,9 @@ n_see_hear = []
 for _ in range(m):
     n_see = input()
     if n_see in n_hear:
-        n_see_hear.append(n_see)
+        # 바로 이부분에서 리스트에 비해 딕셔너리가 시간복잡도가 적어 시간 초과 발생을 방지 할 수 있다.
+        # 만약 리스트로 했다면 인덱스를 지정해주고 연산하기에 더 많은 시간으로 소요한다.
+        n_see_hear.append(n_see)  
 
 # print(len(n_see_hear), *n_see_hear, sep='\n') 
 # -> 자꾸 오답이 발생 why? 사전 순으로 출력해야됨.
