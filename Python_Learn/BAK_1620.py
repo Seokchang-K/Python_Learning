@@ -36,3 +36,19 @@ for _ in range(q_num):
         # input이 숫자로만 이루어지지 않았을 경우
         # numbers 딕셔너리에서 해당 포켓몬의 번호를 출력해 준다.
         print(numbers[pokemon])
+
+# pokemon_list = []
+
+# for i in range(p_num):
+#     a = input()
+#     pokemon_list.append(a)
+
+# for _ in range(q_num):
+#     pokemon = input()
+
+#     if pokemon.isdecimal():
+#         print(pokemon_list[int(pokemon)-1])
+
+#     else:
+#         print(pokemon_list.index(pokemon)+1)
+# 이방법은 리스트로 했기에 시간초과가 발생한다!
